@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { join } from 'path';
-import { loadPackageDefinition } from '@grpc/proto-loader';
+import { PackageDefinition } from '@grpc/proto-loader';
 import { config } from 'dotenv';
 import { AuthServiceClient } from "src/src/auth_grpc_pb"; // Importe le stub généré
 
@@ -11,7 +11,7 @@ async function bootstrap() {
 
   // Charger le fichier proto
   const protoPath = join(__dirname, "src/auth.proto"); // Chemin vers le fichier auth.proto
-  const packageDefinition = loadPackageDefinition(protoPath);
+  const packageDefinition = PackageDefinition(protoPath);
 
   // Configurer le microservice gRPC avec le stub
   const microservice = app.connectMicroservice<MicroserviceOptions>({

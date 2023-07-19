@@ -10,7 +10,10 @@ export class AuthController {
   @GrpcMethod('AuthService', 'Authenticate')
   async authenticate(data: AuthRequest): Promise<AuthResponse> {
     const { email, password } = data;
-    const isAuthenticated = await this.authService.authenticateUser(email, password);
+    const isAuthenticated = await this.authService.login({
+      email: email,
+      password: password,
+    });
 
     return { isAuthenticated };
   }

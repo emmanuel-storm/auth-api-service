@@ -1,8 +1,3 @@
-FROM ubuntu:latest
-LABEL authors="emmanuel"
-
-ENTRYPOINT ["top", "-b"]
-
 # Utiliser une image de base Node.js pour ton API
 FROM node:18
 

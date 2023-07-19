@@ -1,10 +1,4 @@
-// package: auth
-// file: src/auth.proto
-
-/* tslint:disable */
-/* eslint-disable */
-
-import * as grpc from "grpc";
+import * as grpc from "@grpc/grpc-js";
 import * as src_auth_pb from "../src/auth_pb";
 
 interface IAuthServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {

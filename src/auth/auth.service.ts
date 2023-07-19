@@ -1,7 +1,16 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { Client, ClientGrpc } from '@nestjs/microservices';
-import { AuthServiceClient } from './auth/auth_grpc_pb'; // Importe le stub généré
-import { LoginRequest, LoginResponse } from './auth/auth_pb'; // Importe les messages générés
+import { Client, ClientGrpc, Transport } from '@nestjs/microservices'
+import { AuthServiceClient } from '../src/auth_grpc_pb';
+import { LoginRequest, LoginResponse } from '../src/auth_pb';
+
+const authOption: ClientGrpc = {
+  transport: Transport.GRPC,
+  options: {
+    url: 'localhost:3000',
+    package: 'auth',
+    protoPath: '../auth.proto',
+  },
+};
 
 @Injectable()
 export class AuthService {
